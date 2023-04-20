@@ -1,0 +1,23 @@
+{% extends 'layouts/index.html' %}
+
+{% block content %}
+    <style type="text/css">
+    .post-block {
+        width: 80%;
+        margin-left: 10%;
+    }
+    .dates {
+        display: flex;
+        justify-content: space-between;
+    }
+    </style>
+    <div class = "product_block">
+        <div class="info">
+            <h1>{{ product.title }}</h1>
+            <h4>{{ product.description }}</h4>
+            <div class="dates">
+                <h5>Date {{ product.best_before_date }}</h5>
+            </div>
+        </div>
+    </div>
+{% endblock %}
