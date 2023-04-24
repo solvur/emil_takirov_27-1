@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from products.models import Product
+from products.models import Product, Review
 
 
 def main_page_view(request):
@@ -21,9 +21,10 @@ def products_view(request):
 def product_detail_view(request, id):
     if request.method == 'GET':
         product = Product.objects.get(id=id)
-
+        
     context = {
-        'product': product
+        'product': product,
+        'comments': product.review_set.all()
     }
 
     return render(request, 'products/detail.html', context=context)

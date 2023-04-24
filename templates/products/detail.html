@@ -2,9 +2,13 @@
 
 {% block content %}
     <style type="text/css">
-    .post-block {
+    .product_block {
         width: 80%;
         margin-left: 10%;
+        margin-top: 50px;
+    }
+    .product_block > img {
+        width: 100%;
     }
     .dates {
         display: flex;
@@ -12,12 +16,24 @@
     }
     </style>
     <div class = "product_block">
+        {% if product.image %}
+            <img src= "/media/{{ product.image }}" alt="">
+        {% else %}
+            <img src="https://cdn.shopify.com/s/files/1/0533/2089/files/placeholder-images-image_large.png?format=jpg&quality=90&v=1530129081" alt="">
+        {% endif %}
         <div class="info">
             <h1>{{ product.title }}</h1>
             <h4>{{ product.description }}</h4>
             <div class="dates">
                 <h5>Date {{ product.best_before_date }}</h5>
             </div>
+        </div>
+        <div class="reviews">
+            {% for review in reviews %}
+                <div class="review_block">
+                    <h5>{{ review.text }}</h5>  
+                </div>
+            {% endfor %}
         </div>
     </div>
 {% endblock %}
