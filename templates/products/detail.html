@@ -1,7 +1,7 @@
 {% extends 'layouts/index.html' %}
 
 {% block content %}
-    <style type="text/css">
+    <style type="text/css" xmlns="http://www.w3.org/1999/html">
     .product_block {
         width: 80%;
         margin-left: 10%;
@@ -28,12 +28,27 @@
                 <h5>Date {{ product.best_before_date }}</h5>
             </div>
         </div>
+        </div>
+    <div class="reviews">
+            {% for review in reviews %}
+                <div class="review_block">
+                    <h5>{{ review.text }}</h5>
+                </div>
+            {% endfor %}
         <div class="reviews">
             {% for review in reviews %}
                 <div class="review_block">
-                    <h5>{{ review.text }}</h5>  
+                <h5>{{ review.text }}</h5>
                 </div>
             {% endfor %}
         </div>
+    </div>
+    <div class="create_review">
+    <form action="/products/{{ id }}/" method="post">
+        {% csrf_token %}
+
+        {{ form }}
+        <input type="submit" value="Add review">
+    </form>
     </div>
 {% endblock %}
